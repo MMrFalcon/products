@@ -6,9 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProductController {
@@ -26,5 +24,12 @@ public class ProductController {
         log.debug("Rest request to get product with id : {}", id);
         Product product = productService.getProductById(id);
         return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    @PostMapping("product/create")
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        log.debug("Rest request to create product {} ", product.toString());
+        Product addedProduct = productService.addProduct(product);
+        return new ResponseEntity<>(addedProduct, HttpStatus.OK);
     }
 }

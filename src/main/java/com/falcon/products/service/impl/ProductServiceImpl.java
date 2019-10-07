@@ -21,9 +21,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addProduct(Product product) {
+    public Product addProduct(Product product) {
         log.info("Saving " + product.toString());
-        productRepository.save(product);
+        return productRepository.save(product);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
         Optional<Product> optionalProduct = productRepository.findById(productId);
 
         if (optionalProduct.isPresent()) {
-            return  optionalProduct.get();
+            return optionalProduct.get();
         } else {
             throw new RuntimeException("Product not found");
         }
