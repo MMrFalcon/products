@@ -30,6 +30,6 @@ public class ProductController {
     public ResponseEntity<Product> addProduct(@RequestBody Product product) {
         log.debug("Rest request to create product {} ", product.toString());
         Product addedProduct = productService.addProduct(product);
-        return new ResponseEntity<>(addedProduct, HttpStatus.OK);
+        return new ResponseEntity<>(addedProduct, HttpStatus.CREATED);
     }
 }
