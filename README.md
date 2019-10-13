@@ -45,7 +45,11 @@ Change password in the same place of file
 ***
 ### Run application in CentOS image
 
-Open your PowerShell and change directory to the root level of the application and type
+Open your PowerShell and change directory to the root level of the application and type:
+
+`./mvnw clean package`
+
+When job is done it is possible to build docker image from fat jar of packaged application by typing:
 
 `docker build -t image_name .`
 
