@@ -1,9 +1,6 @@
 package com.falcon.products.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +11,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @EqualsAndHashCode
+@NoArgsConstructor
 @ToString
 public class Product {
 
@@ -25,4 +23,10 @@ public class Product {
 
     private int quantity;
 
+    @Builder
+    public Product(Long id, String name, int quantity) {
+        this.id = id;
+        this.name = name;
+        this.quantity = quantity;
+    }
 }
