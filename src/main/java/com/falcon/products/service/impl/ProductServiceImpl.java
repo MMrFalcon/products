@@ -7,7 +7,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -35,5 +39,15 @@ public class ProductServiceImpl implements ProductService {
         } else {
             throw new RuntimeException("Product not found");
         }
+    }
+
+    @Override
+    public Product addProductByProcedure(Product product) {
+        log.info("Executing INSERT procedure for product {}", product.toString());
+        productRepository.createProductProcedure(product.getId().intValue(), product.getName(), product.getQuantity());
+        log.info("Getting last object from repository");
+        List<Product> allProducts = StreamSupport.stream(productRepository.findAll().spliterator(), false)
+                .collect(Collectors.toList());
+        return allProducts.get(allProducts.size() - 1);
     }
 }

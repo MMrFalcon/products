@@ -32,4 +32,11 @@ public class ProductController {
         Product addedProduct = productService.addProduct(product);
         return new ResponseEntity<>(addedProduct, HttpStatus.CREATED);
     }
+
+    @PostMapping("product/create/procedure")
+    public ResponseEntity<Product> addProductByProcedure(@RequestBody Product product) {
+        log.debug("Rest request to create product {} by procedure", product.toString());
+        Product addedProduct = productService.addProductByProcedure(product);
+        return new ResponseEntity<>(addedProduct, HttpStatus.CREATED);
+    }
 }

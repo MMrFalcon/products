@@ -2,10 +2,7 @@ package com.falcon.products.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -13,6 +10,15 @@ import javax.persistence.Id;
 @EqualsAndHashCode
 @ToString
 @NoArgsConstructor
+@NamedStoredProcedureQueries(
+        @NamedStoredProcedureQuery(name = "create_product",
+        procedureName = "dbo.testProductCreation",
+        parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "Id", type = Integer.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "Name", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "Quantity", type = Integer.class)
+        })
+)
 public class Product {
 
     @Id

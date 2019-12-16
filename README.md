@@ -1,6 +1,5 @@
 # Products app
-[![CircleCI](https://circleci.com/gh/MMrFalcon/products.svg?style=svg&circle-token=c56d07d22eb6ff5bdbcfc5e6d1d4a94d11d1b1a0)](https://circleci.com/gh/MMrFalcon/products)
-
+[![CircleCI](https://circleci.com/gh/MMrFalcon/products.svg?style=svg)](https://circleci.com/gh/MMrFalcon/products)
 ## Basic Auth with CentOS image and MSSQL example
 
 ## HOW TO RUN (WINDOWS)
@@ -61,6 +60,29 @@ Type `docker logs image_name` if you want to be ensure that application run.
 
 Application works on localhost:8080
 
+## OPTIONAL Create Procedure
+
+`
+ CREATE PROCEDURE dbo.testProductCreation`
+ 	
+ 	@Id int,
+ 	
+ 	@Name nvarchar(50),
+ 	
+ 	@Quantity int = 1
+ 	
+ `AS`
+ 
+ `BEGIN 	`
+ 
+ 	SET NOCOUNT ON; 
+ 	
+ 	INSERT INTO Product(id, name, quantity) VALUES (@Id, @Name, @Quantity)
+ `END`
+ 
+ `GO`
+ 
+
 ## JSON example 
 
 * **First add BasicAuth. For this example admin admin**
@@ -70,6 +92,14 @@ Application works on localhost:8080
 * **Post method for endpoint:** localhost:8080/product/create
 
 `{
+	"name":"banana2",
+	"quantity": 12
+}`
+
+* **Optional - execute ms sql procedure by post method:** localhost:8080/product/create/procedure
+
+`{
+    "id":3000,
 	"name":"banana2",
 	"quantity": 12
 }`
