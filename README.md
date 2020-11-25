@@ -62,8 +62,8 @@ Application works on localhost:8080
 
 ## OPTIONAL Create Procedure
 
-`
- CREATE PROCEDURE dbo.testProductCreation`
+``` 
+CREATE PROCEDURE dbo.testProductCreation 
  	
  	@Id int,
  	
@@ -71,21 +71,22 @@ Application works on localhost:8080
  	
  	@Quantity int = 1
  	
- `AS`
+ AS
  
- `BEGIN 	`
+ BEGIN 	
  
  	SET NOCOUNT ON; 
  	
  	INSERT INTO Product(id, name, quantity) VALUES (@Id, @Name, @Quantity)
- `END`
+ END
  
- `GO`
+ GO
+```
  
 
 ## JSON example 
 
-* **First add BasicAuth. For this example admin admin**
+* **First add BasicAuth. For this example admin admin Postman: Authorization - Type: Basic Auth**
 
 * **Ensure that Database and Image are working  by typing `docker ps`**
 

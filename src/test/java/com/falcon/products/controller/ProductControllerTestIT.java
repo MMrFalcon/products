@@ -59,7 +59,7 @@ class ProductControllerTestIT {
     void getProduct() throws Exception {
         mockMvc.perform(get("/product/{id}", PRODUCT_ID))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.name").value(PRODUCT_NAME))
                 .andExpect(jsonPath("$.quantity").value(PRODUCT_QUANTITY));
     }
